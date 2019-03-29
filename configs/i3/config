@@ -190,4 +190,4 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 # AUTOSTART
 exec --no-startup-id compton -b --config /home/austin/.config/compton.conf
-exec_always --no-startup-id feh --bg-scale /home/austin/Pictures/Arch_Wallpaper_Dracula_v2.svg.png
+exec_always --no-startup-id feh --bg-scale /home/austin/Pictures/Arch_wallpaper.png
