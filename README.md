@@ -1,1 +1,3 @@
-# arch-dotfiles
+My dotfiles 
+
+nothing fancy...
