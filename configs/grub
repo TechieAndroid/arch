@@ -44,7 +44,7 @@ GRUB_DISABLE_RECOVERY=true
 #GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
 
 # Uncomment one of them for the gfx desired, a image background or a gfxtheme
-GRUB_BACKGROUND="/home/austin/Pictures/Arch.png"
+GRUB_BACKGROUND="~/Arch.png"
 #GRUB_THEME="/path/to/gfxtheme"
 
 # Uncomment to get a beep at GRUB start
