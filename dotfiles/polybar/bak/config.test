@@ -1,0 +1,540 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+ 
+ 
+; NB: Don't worry if there are weird symbols, the Siji font displays different ones. It will look correct in the bar but may look wrong in your editor.
+ 
+[colors]
+background = #202a2a
+background-light = #3b4252
+background-alt = #144133
+foreground = #d7ffd7
+foreground-alt = #88c0d0
+highlight = #39c6fe
+secondary = #e60053
+alert = #bf616a
+alert2 = #ebcb8b
+ 
+;==============================
+;       BARS
+;==============================
+ 
+[bar/top]
+; comment line below if you only have 1 screen
+; monitor = ${env:MONITOR:DP-4.8}
+ 
+width = 100%
+height = 32
+fixed-center = true
+ 
+background = ${colors.background}
+foreground = ${colors.foreground}
+ 
+line-size = 6
+line-color = ${colors.highlight}
+ 
+border-size = 4
+border-color = ${colors.background-alt}
+border-top-size = 0
+ 
+padding-left = 0
+padding-right = 0
+ 
+module-margin-left = 0
+moduled-margin-right = 0
+ 
+font-0 = "FuraCode Nerd Font Mono:size=22;3"
+;font-1 = "Misc Termsyn:size=12;2"
+font-1 = "scientifica:size=12;2"
+font-2 = "Wuncon Siji:size=12;2"
+font-3 = FontAwesome:size=8;2
+font-4 = "FuraCode Nerd Font Mono:style=medium:size=6;3"
+ 
+; desktop PC modules
+modules-left = menu i3 xwindow
+modules-center =
+modules-right = eth ethupdown cpu memory xkeyboard date
+ 
+; laptop modules
+;modules-left = menu i3 xwindow
+;modules-center =
+;modules-right = xbacklight battery eth ethupdown cpu memory xkeyboard date
+ 
+;wm-restack = bspwm
+;wm-restack = i3
+ 
+;override-redirect = true
+ 
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+ 
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+ 
+[bar/bottom]
+ 
+; comment line below if you only have 1 screen
+; monitor = ${env:MONITOR:DP-4.8}
+bottom = true
+width = 100%
+height = 30
+fixed-center = true
+ 
+background = ${colors.background}
+foreground = ${colors.foreground}
+ 
+line-size = 4
+line-color = #39c6fe
+ 
+border-size = 3
+border-color = ${colors.background}
+border-top-color = ${colors.background-alt}
+border-bottom-size = 0
+ 
+padding-left = 0
+padding-right = 0
+ 
+module-margin-left = 0
+module-margin-right = 0
+module-margin-top = 0
+ 
+tray-position = right
+tray-padding = 4
+;tray-transparent = true
+tray-background = ${colors.background-alt}
+ 
+font-0 = "FuraCode Nerd Font Mono:style=medium:size=22;3"
+;font-1 = "Misc Termsyn:size=12;3"
+font-1 = "scientifica:size=12;3"
+font-2 = "Wuncon Siji:size=12;3"
+font-3 = FontAwesome:size=8;3
+font-4 = "FuraCode Nerd Font Mono:style=medium:size=6;3"
+;NOTE: if you specify font 2 in a module, like %{T2}, it will use font-1. That's just how polybar works.
+ 
+; modules
+modules-left = musictext mpd volume
+modules-center =
+modules-right = trayspacer
+ 
+ 
+;==============================
+;       MODULES
+;==============================
+ 
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+ 
+format-prefix = "%{F#296c3d}%{T3}%{F- B#296c3d} %{T1}%{R B#264e32}"
+format-prefix-foreground = ${colors.foreground}
+;format-prefix-underline = ${colors.secondary}
+ 
+label-layout = %{F-}%{T2}%layout%%{F#264e32 B-}
+format-underline = ${colors.background}
+format-overline = ${colors.background}
+ 
+label-indicator = "%{F#bf616a}%{T3}%{R}%name% %{T1}%{R}"
+label-indicator-padding = 1
+label-indicator-margin = 0
+label-indicator-background = ${colors.background}
+label-indicator-underline = ${colors.background}
+ 
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = false
+ 
+ 
+label-mode = %{F#3e8747}%{R F-}%{T2} %mode% %{R B-}
+label-mode-padding = 0
+label-mode-foreground = #2b303b
+label-mode-background = ${colors.background}
+label-mode-overline = ${colors.background}
+label-mode-underline = ${colors.background}
+ 
+; focused = Active workspace on focused monitor
+label-focused = %{F#1c5f4a}%{R F-}%{T2}%index%%{R B-}
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.foreground-alt}
+label-focused-padding = 0
+label-focused-overline = ${colors.background}
+label-focused-underline = ${colors.background}
+ 
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %{F#144133}%{R F-}%{T2}%index%%{R B-}
+label-unfocused-foreground = ${colors.background-light}
+label-unfocused-padding = 0
+label-unfocused-background = ${colors.background}
+label-unfocused-overline = ${colors.background}
+label-unfocused-underline = ${colors.background}
+ 
+; visible = Active workspace on unfocused monitor
+label-visible = ${self.label-unfocused}
+label-visible-foreground = ${self.label-unfocused-foreground}
+label-visible-background = ${self.label-unfocused-background}
+label-visible-padding = ${self.label-unfocused-padding}
+label-visible-overline = ${colors.background}
+label-visible-underline = ${colors.background}
+ 
+; urgent = Workspace with urgency hint set
+label-urgent = %{F#ebcb8b B#bf616a}%{T2}%index%%{F#bf616a B-}
+label-urgent-foreground = ${colors.alert}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 0
+label-urgent-overline = ${colors.background}
+label-urgent-underline = ${colors.background}
+ 
+[module/mpd]
+type = internal/mpd
+ 
+host = 127.0.0.1
+port = 6600
+ 
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next> <bar-progress> <label-song>
+format-playing = ${self.format-online}
+format-paused = ${self.format-online}
+format-stopped = ${self.format-online}
+ 
+format-offline = <label-offline>
+label-offline = "mpd is offline"
+label-offline-foreground = ${colors.foreground}
+ 
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+ 
+label-song-maxlen = 50
+label-song-ellipsis = true
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+bar-progress-width = 21
+bar-progress-foreground = #3b4252
+bar-progress-background = #2b303b
+bar-progress-gradient = false
+ 
+bar-progress-indicator =
+ 
+bar-progress-fill = %{T5}
+bar-progress-fill-background = #81a1c1
+bar-progress-fill-foreground = #e5e9f0
+ 
+bar-progress-empty = %{T5}
+bar-progress-empty-background = #81a1c1
+bar-progress-empty-foreground = #3b4252
+ 
+format-progress-overline = ${colors.background}
+format-progress-underline = ${colors.background}
+ 
+ 
+[module/xbacklight]
+type = internal/xbacklight
+ 
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+label =  %percentage%%
+label-foreground = ${colors.foreground}
+ 
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = -
+bar-fill-font = 2
+bar-fill-foreground = ${colors.foreground-alt}
+bar-empty = -
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground}
+ 
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+ 
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label>
+format-prefix = "%{F#24785d}%{T3}%{R F-} %{T1}%{F#24785d B#225746}"
+label-foreground = ${colors.foreground}
+label= %{F-}%{T2}%percentage%%%{R B-}
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+;ramp-coreload-0 = ▁
+;ramp-coreload-0-foreground = #a3be8c
+;ramp-coreload-1 = ▂
+;ramp-coreload-1-foreground = #a3be8c
+;ramp-coreload-2 = ▃
+;ramp-coreload-2-foreground = #a3be8c
+;ramp-coreload-3 = ▄
+;ramp-coreload-3-foreground = #a3be8c
+;ramp-coreload-4 = ▅
+;ramp-coreload-4-foreground = #ebcb8b
+;ramp-coreload-5 = ▆
+;ramp-coreload-5-foreground = #ebcb8b
+;ramp-coreload-6 = ▇
+;ramp-coreload-6-foreground = #bf616a
+;ramp-coreload-7 = █
+;ramp-coreload-7-foreground = #bf616a
+ 
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "%{F#24785d}%{T3}%{R F-} %{T1}%{F#24785d B#225746}"
+format-prefix-foreground = ${colors.foreground}
+label= %{F-}%{T2}%gb_used%%{R B-}
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+ 
+format-connected = <ramp-signal> <label-connected>
+;format-connected-underline = #9f78e1
+label-connected = %essid%
+label-disconnected = 
+ 
+format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected-foreground = #bf616a
+ 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground}
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+[module/wlanupdown]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+ 
+format-connected = <label-connected>
+label-connected = %{T3}%downspeed:8% %upspeed:8%
+format-disconnected =
+label-font = 2
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+ 
+[module/eth]
+type = internal/network
+interface = eno1
+interval = 3.0
+ 
+;format-connected-underline = #55aa55
+format-connected-prefix = "%{F#296c3d}%{R F-}%{R B#264e32}"
+format-connected-prefix-foreground = ${colors.foreground}
+label-connected = %{T2}%local_ip%%{T1}%{F#264e32 B-}
+ 
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+format-connected-overline = ${colors.background}
+format-connected-underline = ${colors.background}
+ 
+[module/ethupdown]
+type = internal/network
+interface = eno1
+interval = 0.5
+ 
+format-connected = <label-connected>
+label-connected = "%{F#296c3d}%{R F-}%{R B#264e32}%{F- B#264e32}%{T2}%downspeed:8%%{T1}%{F#296c3d B#264e32}%{R F-}%{T3}%{R B#264e32}%{T1}%{F-}%{T2}%upspeed:8%%{R B-}"
+format-disconnected =
+ 
+format-connected-overline = ${colors.background}
+format-connected-underline = ${colors.background}
+ 
+[module/volume]
+type = internal/pulseaudio
+sink = alsa_output.usb-iFi__by_AMR__iFi__by_AMR__HD_USB_Audio-00.analog-stereo
+use-ui-max = false
+# unreleased feature, enable once available
+#interval = 5
+ 
+format-volume = <bar-volume><label-volume>
+format-volume-prefix = %{F#43bc52 B-}%{R F-}%{R B#3e8747}
+format-volume-prefix-foreground = ${colors.foreground}
+format-volume-suffix = 
+format-volume-suffix-foreground = #3e8747
+format-volume-suffix-background = ${colors.background}
+label-volume = "%{F- B#3e8747}%{T2} %percentage%% "
+label-volume-foreground = ${colors.background}
+ 
+format-muted-prefix = " "
+format-muted-foreground = ${colors.alert}
+label-muted = %{T2}sound muted
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+bar-volume-width = 21
+bar-volume-foreground = ${colors.foreground}
+bar-volume-background = #3e8747
+bar-volume-gradient = false
+ 
+bar-volume-indicator =
+ 
+bar-volume-fill = %{T5}
+bar-volume-fill-background = #3e8747
+bar-volume-fill-foreground = ${colors.foreground}
+ 
+bar-volume-empty = %{T5}
+bar-volume-empty-background = #3e8747
+bar-volume-empty-foreground = ${colors.background-alt}
+ 
+format-volume-overline = ${colors.background}
+format-volume-underline = ${colors.background}
+ 
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+time-format = %H:%M
+ 
+format-charging = <animation-charging> <label-charging>
+label-charging = %{T2}%percentage%% (%time%)
+;format-charging-underline = #ffb52a
+ 
+format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
+ 
+;format-full = <label-charging>
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground}
+;format-full-underline = ${self.format-charging-underline}
+ 
+;label-full = ""
+ 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ 
+ramp-capacity-foreground = ${colors.foreground}
+ 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-7 = 
+animation-charging-8 = 
+animation-charging-9 = 
+ 
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 125
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 70
+ 
+format = <ramp> <label>
+;format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+ 
+label = %{T2}%temperature-c%
+label-warn = %{T2}%temperature-c%
+label-warn-foreground = ${colors.secondary}
+ 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground}
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+[module/date]
+type = internal/date
+interval = 1
+label = "%{F- B#144133}%{T3}    %time%    "
+time =  %H:%M:%S
+time-alt =  %H:%M:%S  %Y-%m-%d
+format-foreground = ${colors.background-alt}
+ 
+[module/menu]
+type = custom/text
+ 
+content = "%{T1}  %{T2}MENU   %{R B-}"
+content-background = ${colors.background-alt}
+ 
+click-right = rofi -show run
+click-left = jgmenu
+ 
+[module/musictext]
+type = custom/text
+ 
+content = "%{T2}   MUSIC   %{R B-}"
+content-background = ${colors.background-alt}
+ 
+[module/trayspacer]
+type = custom/text
+ 
+content = "%{B#144133} "
+content-background = ${colors.background}
+content-foreground = ${colors.background-alt}
+ 
+[module/xwindow]
+type = internal/xwindow
+ 
+format = <label>
+label = %{F#144133}%{R F-}%{T2}%title% %{R B-}
+;label-maxlen = 75
+ 
+format-foreground = ${colors.foreground}
+format-overline = ${colors.background}
+format-underline = ${colors.background}
+ 
+;==============================
+;
+;       OTHER
+;
+;==============================
+ 
+[settings]
+;format-overline = ${colors.background}
+;format-underline = ${colors.background}
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+ 
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+ 
+; vim:ft=dosini
