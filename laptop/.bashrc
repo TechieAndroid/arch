@@ -20,3 +20,4 @@ export PS1='\w$(__git_ps1 " (%s)")\$ '
 
 alias lolfetch='neofetch | lolcat'
 alias meow='cat'
+alias ytdl='youtube-dl'
