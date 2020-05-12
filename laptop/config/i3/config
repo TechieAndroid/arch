@@ -213,6 +213,9 @@ bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#875fd7' -sf '#F
 #        status_command i3status
 #}
 
+# Lutris
+for_window [instance="origin.exe"] floating enable
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -224,7 +227,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 
 # AUTOSTART
 exec --no-startup-id picom -b --config ~/.config/picom.conf
-exec_always --no-startup-id feh --bg-scale ~/wall.png
+exec_always --no-startup-id feh --bg-scale ~/black.png
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 # exec systemctl start httpd
 # exec systemctl start systemd-timesyncd

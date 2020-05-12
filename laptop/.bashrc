@@ -21,3 +21,9 @@ export PS1='\w$(__git_ps1 " (%s)")\$ '
 alias lolfetch='neofetch | lolcat'
 alias meow='cat'
 alias ytdl='youtube-dl'
+alias neofetch='neofetch --ascii_colors 0 0  --colors'
+alias pipes='pipes.sh -c#87'
+alias sup='sudo pacman -Syu'
+alias yup='yay -Syu'
+
+export PATH="/home/recompiler/pipes.sh/:$PATH"

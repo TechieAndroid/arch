@@ -19,7 +19,6 @@ audiocd-kio
 autoconf
 automake
 base
-bash-pipes
 bison
 blender
 blinken
@@ -29,12 +28,14 @@ bomber
 bovo
 breeze-grub
 cantor
+capstone
 catimg
 cava
 cemu
 cervisia
 cmatrix
 cmus
+cmusfm
 conky
 cpupower
 cups
@@ -43,6 +44,7 @@ deluge-gtk
 dhcpcd
 dialog
 discord
+discord-canary
 displaycal
 dmenu
 doge
@@ -84,6 +86,7 @@ htop
 i3-gaps
 i3blocks
 i3status
+ibus
 ifplugd
 iio-sensor-proxy
 inkscape-git
@@ -175,7 +178,6 @@ knotes
 kolf
 kollision
 kolourpaint
-komorebi
 kompare
 konqueror
 konquest
@@ -227,7 +229,6 @@ lolcat
 lskat
 lutris
 lxdm
-lxdm-themes
 ly-git
 make
 man-db
@@ -237,6 +238,7 @@ mesa-demos
 mesa-vdpau
 minecraft-launcher
 minuet
+mips64-elf-binutils
 mtools
 nano
 neofetch
@@ -274,6 +276,7 @@ pulseaudio-bluetooth
 python-pip
 qemu
 qemu-arch-extra
+qemu-irix-git
 ranger
 reflector
 reiserfsprogs
