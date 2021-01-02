@@ -1,0 +1,174 @@
+Arch Install Guide
+
+#ls /sys/firmware/efi/efivars
+
+#ip link
+#ip link set interface up
+
+#iwctl
+[iwd]# device list
+[iwd]# station interface scan
+[iwd]# station interface get-networks
+[iwd]# station interface connect SSID
+
+#ping 1.1.1.1
+
+#timedatectl set-ntp true
+#timedatectl status
+
+#cfdisk
+
+Converting to GPT:
+#gdisk /dev/sdX
+Command:w
+Command:y
+
+#lsblk
+#blkid
+
+BIOS w/ GPT:
+/dev/sdX 4M BIOS boot
+/dev/sdX 8G Linux swap
+/dev/sdX 100G Linux Filesystem
+
+UEFI w/ GPT:
+/dev/sdX 512M EFI System
+/dev/sdX 8G Linux swap
+/dev/sdX 100G Linux Filesystem
+
+#mkfs.fat -F32 /dev/sdX
+#mkfs.ext4 /dev/sdX
+#mkswap /dev/sdX
+#swapon /dev/sdX
+
+#mount /dev/sdX /mnt
+#mkdir /mnt/boot/efi
+#mount /dev/sdX /mnt/boot/efi
+
+#reflector --latest 20 --sort rate --protocol https --country “United States” --age 12 --save /etc/pacman.d/mirrorlist
+
+#pacstrap /mnt base base-devel linux-firmware linux-zen linux-zen-headers
+
+Boot
+grub os-prober efibootmgr amd-ucode
+
+Networking
+net-tools netctl networkmanager dhcpcd ufw
+
+Wi-Fi
+iwd dialog wpa_supplicant
+
+Bluetooth
+bluez bluez-utils bluez-qt
+
+Graphics
+mesa clinfo vulkan-icd-loader amdvlk 
+xorg-server dmenu i3-gaps picom feh
+
+$yay -S rocm-opencl-runtime
+
+System
+ark alsa pulseaudio reflector mlocate sudo linux-tools git konsole vim vim-plugns nano kate dolphin dolphin-plugins xf86-input-libinput xf86-input-wacom libwacom ntfs-3g filelight gwenview okular xdg-user-dirs openssh
+
+Misc
+firefox system-config-printer print-manager kdenlive k3b kcalc krita inkscape gimp blender ffmpegthumbs youtube-dl
+
+Eyecandy
+spectacle qt5ct papirus-icon-theme breeze-icons oxygen-icons htop bashtop lolcat neofetch syntax-highlighting powerline powerline-fonts python-powerline powerline-vim python-dbus
+
+#genfstab -U /mnt >> /mnt/etc/fstab
+
+#arch-chroot /mnt
+
+#timedatectl set-timezone America/Chicago
+#timedatectl set-ntp true
+#hwclock –systohc
+
+
+#vim /etc/locale.gen uncomment #en_US.UTF-8
+#locale-gen
+#echo LANG=en_US.UTF-8 >> /etc/locale.conf 
+#echo hostname >> /etc/hostname
+#vim /etc/hosts
+
+	127.0.0.1 localhost
+	::1 localhost
+	127.0.1.1 hostname.localdomain hostname
+
+#passwd
+#useradd -m user
+#passwd user
+#vim /etc/sudoers
+
+	user ALL=(ALL) ALL
+	Defaults passwd_timeout=0
+
+EFI
+#grub-install --target=x86_64-efi --efi-directory=/boot/efi –bootloader-id=GRUB
+
+BIOS boot
+#grub-install --target=i386-pc /dev/sdX
+
+#os-prober
+#grub-mkconfig -o /boot/grub/grub.cfg
+#efibootmgr
+
+#su user
+$xdg-user-dirs-update
+$git clone https://aur.archlinux.org/yay.git
+$cd yay && makepkg -si
+$yay -S ly polybar
+#systemctl enable ly
+
+#systemctl enable NetworkManager
+or
+#systemctl enable iwd
+
+#systemctl enable sshd
+#systemctl enable fstrim.timer
+
+Configuration
+
+#vim /etc/environment
+
+	QT_QPA_PLATFORMTHEME=qt5ct
+
+
+#vim /etc/pacman.conf
+
+	IloveCandy
+	Color
+
+#vim /etc/resolv.conf
+
+	nameserver 1.1.1.1
+
+#vim /etc/iwd/main.conf
+
+	[General]
+	EnableNetworkConfiguration=true
+	RoutePriorityOffset=300
+	[Network]
+	NameResolvingService=resolvconf
+
+$vim ~/.config/kdeglobals
+
+	[Colors:View]
+	BackgroundNormal=R,G,B
+
+Configs
+
+/etc/default/grub
+/etc/pacman.conf
+/usr/share/X11/xorg.conf.d/
+~/.config/i3/config
+~/.config/polybar/config.ini
+~/.config/polybar/launch.sh
+~/.config/picom.conf
+~/.config/bashtop/
+~/.local/share/konsole/
+~/.config/qt5ct/colors/
+
+Logs
+
+~/.local/share/xorg/Xorg.0.log
