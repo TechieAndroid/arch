@@ -1,3 +1,1 @@
-My dotfiles 
-
-nothing fancy...
+Arch Config
