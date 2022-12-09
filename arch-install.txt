@@ -47,7 +47,7 @@ UEFI w/ GPT:
 
 #reflector --latest 20 --sort rate --protocol https -c 'United States' --age 12 --save /etc/pacman.d/mirrorlist
 
-#pacstrap /mnt base base-devel linux-firmware linux-zen linux-zen-headers
+#pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers
 
 Boot
 grub os-prober efibootmgr amd-ucode
