@@ -47,6 +47,9 @@ UEFI w/ GPT:
 
 #reflector --latest 20 --sort rate --protocol https -c 'United States' --age 12 --save /etc/pacman.d/mirrorlist
 
+If the keyring is outdated in the livecd then run this to update them
+#pacman -Sy archlinux-keyring && pacman -Su
+
 #pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers
 
 Boot
