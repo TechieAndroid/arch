@@ -45,7 +45,7 @@ UEFI w/ GPT:
 #mkdir /mnt/boot/efi
 #mount /dev/sdX /mnt/boot/efi
 
-#reflector --latest 20 --sort rate --protocol https --country “United States” --age 12 --save /etc/pacman.d/mirrorlist
+#reflector --latest 20 --sort rate --protocol https -c 'United States' --age 12 --save /etc/pacman.d/mirrorlist
 
 #pacstrap /mnt base base-devel linux-firmware linux-zen linux-zen-headers
 
