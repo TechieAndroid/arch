@@ -45,12 +45,69 @@ UEFI w/ GPT:
 #mkdir /mnt/boot/efi
 #mount /dev/sdX /mnt/boot/efi
 
+#timedatectl status
+#timedatectl list-timezones
+#timedatectl set-timezone America/New_York
+#hwclock --show
+#hwclock --systohc
+
 #reflector --latest 20 --sort rate --protocol https -c 'United States' --age 12 --save /etc/pacman.d/mirrorlist
 
 If the keyring is outdated in the livecd then run this to update them
 #pacman -Sy archlinux-keyring && pacman -Su
 
 #pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers
+
+#genfstab -U /mnt >> /mnt/etc/fstab
+
+#arch-chroot /mnt
+
+#timedatectl set-timezone America/Chicago
+#timedatectl set-ntp true
+#hwclock –systohc
+
+
+#vim /etc/locale.gen uncomment #en_US.UTF-8
+#locale-gen
+#echo LANG=en_US.UTF-8 >> /etc/locale.conf 
+#echo hostname >> /etc/hostname
+#vim /etc/hosts
+
+	127.0.0.1 localhost
+	::1 localhost
+	127.0.1.1 hostname.localdomain hostname
+
+#passwd
+
+EFI
+#grub-install --target=x86_64-efi --efi-directory=/boot/efi –bootloader-id=GRUB
+
+BIOS boot
+#grub-install --target=i386-pc /dev/sdX
+
+#os-prober
+#grub-mkconfig -o /boot/grub/grub.cfg
+#efibootmgr
+
+#vim /etc/ssh/sshd_config
+
+	PermitRootLogin yes
+
+#exit
+#umount -R /mnt
+#reboot
+
+#useradd -m user
+#passwd user
+#vim /etc/sudoers
+
+	user ALL=(ALL) ALL
+	Defaults passwd_timeout=0
+
+#su user
+$sudo pacman -S xdg-user-dirs
+$xdg-user-dirs-update
+
 
 Boot
 grub os-prober efibootmgr amd-ucode
@@ -79,45 +136,6 @@ firefox system-config-printer print-manager kdenlive k3b kcalc krita inkscape gi
 Eyecandy
 spectacle qt5ct papirus-icon-theme breeze-icons oxygen-icons htop bashtop lolcat neofetch syntax-highlighting powerline powerline-fonts python-powerline powerline-vim python-dbus
 
-#genfstab -U /mnt >> /mnt/etc/fstab
-
-#arch-chroot /mnt
-
-#timedatectl set-timezone America/Chicago
-#timedatectl set-ntp true
-#hwclock –systohc
-
-
-#vim /etc/locale.gen uncomment #en_US.UTF-8
-#locale-gen
-#echo LANG=en_US.UTF-8 >> /etc/locale.conf 
-#echo hostname >> /etc/hostname
-#vim /etc/hosts
-
-	127.0.0.1 localhost
-	::1 localhost
-	127.0.1.1 hostname.localdomain hostname
-
-#passwd
-#useradd -m user
-#passwd user
-#vim /etc/sudoers
-
-	user ALL=(ALL) ALL
-	Defaults passwd_timeout=0
-
-EFI
-#grub-install --target=x86_64-efi --efi-directory=/boot/efi –bootloader-id=GRUB
-
-BIOS boot
-#grub-install --target=i386-pc /dev/sdX
-
-#os-prober
-#grub-mkconfig -o /boot/grub/grub.cfg
-#efibootmgr
-
-#su user
-$xdg-user-dirs-update
 $git clone https://aur.archlinux.org/yay.git
 $cd yay && makepkg -si
 $yay -S ly polybar
