@@ -111,6 +111,8 @@ $xdg-user-dirs-update
 $sudo pacman -S plasma-meta kde-applications-meta
 $sudo systemctl enable sddm
 
+Docker
+docker docker-compose
 
 Boot
 grub os-prober efibootmgr amd-ucode
