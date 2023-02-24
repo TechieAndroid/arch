@@ -4,10 +4,14 @@ Follow base install of arch linux.
   disk gpt using bios boot with 512mb unformatted space.
   Install vim, grub, networkmanager, htop, and neofetch.
   enable networkmanager to boot.
+  Install GRUB i386-pc.
+  Set GRUB timeout to 0.
+  Configure GRUB.
   Set hostname to k8smasternode.
   Write down IP address.
 Clone and change the VM name of the clone to k8sworkernode1
 Start k8sworkernode1 vm and change it's hostname to k8sworkernode1
+  Write down IP address.
 
 On k8smasternode install docker, kubeadm, kubelet, kubectl
 On k8sworkernode1 install docker, kubeadm, kubelet
