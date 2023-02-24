@@ -8,3 +8,7 @@ Follow base install of arch linux.
   Write down IP address.
 Clone and change the VM name of the clone to k8sworkernode1
 Start k8sworkernode1 vm and change it's hostname to k8sworkernode1
+
+On k8smasternode install docker, kubeadm, kubelet, kubectl
+On k8sworkernode1 install docker, kubeadm, kubelet
+
