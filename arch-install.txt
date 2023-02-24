@@ -14,6 +14,7 @@ Arch Install Guide
 #ping 1.1.1.1
 
 #timedatectl set-ntp true
+#timedatectl set-timzone America/New_York
 #timedatectl status
 
 #cfdisk
