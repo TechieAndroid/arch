@@ -1,0 +1,10 @@
+Make first VM in VMware Workstation and call it k8smasternode
+Follow base install of arch linux.
+  setup disk without swap and make sure fstab also has no swap.
+  disk gpt using bios boot with 512mb unformatted space.
+  Install vim, grub, networkmanager, htop, and neofetch.
+  enable networkmanager to boot.
+  Set hostname to k8smasternode.
+  Write down IP address.
+Clone and change the VM name of the clone to k8sworkernode1
+Start k8sworkernode1 vm and change it's hostname to k8sworkernode1
