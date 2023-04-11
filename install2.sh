@@ -38,6 +38,9 @@ grub-install --target=i386-pc /dev/sda ; sed -i 's/^GRUB_TIMEOUT=[0-9]*$/GRUB_TI
 echo "tux ALL=(ALL) ALL" >> /etc/sudoers
 echo "Defaults passwd_timeout=0" >> /etc/sudoers
 
+useradd -m tux
+passwd tux
+
 # Update xdg user directories
 xdg-user-dirs-update
 
