@@ -34,6 +34,154 @@ The Arch Install Guide is a set of commands for installing the Arch Linux operat
 
     lsblk: List the available block devices and their partitions.
 
+#arch-chroot /mnt
+
+    Changes the root directory to the /mnt directory
+
+#timedatectl set-timezone America/Chicago
+
+    Sets the timezone to America/Chicago
+
+#timedatectl set-ntp true
+
+    Enables Network Time Protocol (NTP) synchronization
+
+#hwclock –systohc
+
+    Updates the hardware clock to match the system time
+
+#vim /etc/locale.gen uncomment #en_US.UTF-8
+
+    Edits the /etc/locale.gen file and uncomment the en_US.UTF-8 line
+
+#locale-gen
+
+    Generates the locale files specified in the /etc/locale.gen file
+
+#echo LANG=en_US.UTF-8 >> /etc/locale.conf
+
+    Sets the system-wide default locale to en_US.UTF-8
+
+#echo hostname >> /etc/hostname
+
+    Sets the hostname to "hostname"
+
+#vim /etc/hosts
+
+    Edits the /etc/hosts file
+
+    127.0.0.1 localhost
+    ::1 localhost
+    127.0.1.1 hostname.localdomain hostname
+
+    Adds the hostname to the loopback address
+
+#passwd
+
+    Changes the root user password
+
+#grub-install --target=x86_64-efi --efi-directory=/boot/efi –bootloader-id=GRUB
+
+    Installs the GRUB bootloader in EFI mode
+
+#grub-install --target=i386-pc /dev/sdX
+
+    Installs the GRUB bootloader in BIOS mode
+
+#os-prober
+
+    Detects other installed operating systems
+
+#grub-mkconfig -o /boot/grub/grub.cfg
+
+    Generates the GRUB configuration file
+
+#efibootmgr
+
+    Manages the EFI boot entries
+
+#vim /etc/ssh/sshd_config
+
+    Edits the /etc/ssh/sshd_config file
+
+    PermitRootLogin yes
+
+    Enables root login via SSH
+
+#exit
+
+    Exits the chroot environment
+
+#umount -R /mnt
+
+    Unmounts the mounted filesystems
+
+#reboot
+
+    Reboots the system
+
+#useradd -m user
+
+    Creates a new user named "user" with a home directory
+
+#passwd user
+
+    Sets the password for the "user" account
+
+#vim /etc/sudoers
+
+    Edits the /etc/sudoers file
+
+    user ALL=(ALL) ALL
+    Defaults passwd_timeout=0
+
+    Grants sudo access to the "user" account and disables the password timeout
+
+#su user
+
+    Switches to the "user" account
+
+$sudo pacman -S xdg-user-dirs
+
+    Installs the xdg-user-dirs package
+
+$xdg-user-dirs-update
+
+    Updates the user directories to match the locale
+
+$sudo pacman -S plasma-meta kde-applications-meta
+
+    Installs the Plasma desktop environment and applications
+
+$sudo systemctl enable sddm
+
+    Enables the SDDM display manager to start at boot
+
+Docker
+docker docker-compose
+
+    Installs Docker and Docker Compose
+
+Boot
+grub os-prober efibootmgr amd-ucode
+
+    Installs and configures the boot manager
+
+Networking
+net-tools netctl networkmanager dhcpcd ufw
+
+    Installs the necessary network tools and services
+
+Wi-Fi
+iwd dialog wpa_supplicant
+
+    Installs the necessary packages for Wi-Fi connections
+
+Bluetooth
+bluez bluez-utils bluez-qt
+
+    Installs the necessary packages for Bluetooth connections
+
     blkid: Display the UUID and other attributes of block devices.
 
     mkfs.fat -F32 /dev/sdX: Format the partition as a FAT32 file system.
