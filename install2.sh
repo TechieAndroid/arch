@@ -35,7 +35,7 @@ passwd
 pacman -S grub networkmanager ufw neofetch sudo nano vim htop docker docker-compose xdg-user-dirs
 
 # BIOS boot
-grub-install --target=i386-pc /dev/sdX ; grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target=i386-pc /dev/sda ; grub-mkconfig -o /boot/grub/grub.cfg
 
 # Edit /etc/sudoers file
 echo "tux ALL=(ALL) ALL" >> /etc/sudoers
