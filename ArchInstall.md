@@ -215,3 +215,50 @@ bluez bluez-utils bluez-qt
     pacstrap -K /mnt base base-devel linux-firmware linux-zen linux-zen-headers: Install the base system and required packages to the /mnt directory.
 
     genfstab -U /mnt >> /mnt/etc/fstab: Generate a file system table to
+
+Graphics:
+
+    mesa: open-source 3D graphics library
+    clinfo: command-line utility to display information about OpenCL platforms and devices
+    vulkan-icd-loader: Vulkan Installable Client Driver (ICD) loader
+    amdvlk: AMD's open-source Vulkan driver for Linux
+    xorg-server: X.Org display server
+    dmenu: dynamic menu for X windows
+    i3-gaps: tiling window manager with gaps between windows
+    picom: lightweight compositor for X11
+    feh: lightweight and fast image viewer
+
+$yay -S rocm-opencl-runtime: installs the ROCm OpenCL runtime, which is a software stack for AMD GPUs that supports OpenCL.
+
+System:
+
+    ark: graphical file compression and extraction utility
+    alsa: advanced Linux sound architecture
+    pulseaudio: sound server for Linux
+    reflector: tool to update and manage Arch Linux mirrorlist
+    mlocate: utility to quickly locate files by name
+    sudo: command-line utility that allows a user to run commands with the security privileges of another user
+    linux-tools: collection of utilities for Linux kernel development and debugging
+    git: version control system
+    konsole: terminal emulator for KDE
+    vim: text editor
+    vim-plugins: collection of plugins for the Vim editor
+    nano: text editor for the command line
+    kate: text editor for KDE
+    dolphin: file manager for KDE
+    dolphin-plugins: plugins for the Dolphin file manager
+    xf86-input-libinput: input driver for X.Org using the libinput library
+    xf86-input-wacom: input driver for Wacom tablets
+    libwacom: library to identify Wacom tablets and their features
+    ntfs-3g: read-write NTFS driver for FUSE
+    filelight: graphical disk usage analyzer
+    gwenview: image viewer for KDE
+    okular: document viewer for KDE
+    xdg-user-dirs: tool to manage user directories
+    openssh: secure shell (SSH) connectivity tools
+
+Misc:
+
+    firefox: web browser
+    system-config-printer: printer configuration utility
+    print-manager: printing management utility
