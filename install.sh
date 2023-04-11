@@ -18,8 +18,7 @@ echo -e "o\ny\nn\n\n\n+5M\nef02\nn\n\n\n\n8300\nw\ny\n" | gdisk /dev/sda
 # Format second partition as ext4
 mkfs.ext4 /dev/sda2 ; mount /dev/sda2 /mnt
 
-timedatectl set-ntp true ; timedatectl set-timezone America/New_York ; timedatectl status
-hwclock --show ; hwclock --systohc
+timedatectl set-ntp true ; timedatectl set-timezone America/New_York ; hwclock --systohc
 
 reflector --latest 20 --sort rate --protocol https -c 'United States' --age 12 --save /etc/pacman.d/mirrorlist
 
