@@ -50,3 +50,9 @@ echo "ILoveCandy" >> /etc/pacman.conf
 
 # Enable NetworkManager
 systemctl enable NetworkManager
+
+# Enable Docker
+systemctl enable docker.service
+
+# Add user to Docker group
+usermod -aG docker tux
