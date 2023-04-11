@@ -28,7 +28,7 @@ EOF
 passwd
 
 # Pacman
-pacman -S grub networkmanager ufw neofetch sudo nano vim htop docker docker-compose xdg-user-dirs
+pacman -S grub networkmanager ufw neofetch sudo nano vim htop git docker docker-compose xdg-user-dirs
 
 # BIOS boot
 # Edit the GRUB configuration file to set the timeout to 0 seconds
