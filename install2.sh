@@ -31,7 +31,8 @@ passwd
 pacman -S grub networkmanager ufw neofetch sudo nano vim htop docker docker-compose xdg-user-dirs
 
 # BIOS boot
-grub-install --target=i386-pc /dev/sda ; grub-mkconfig -o /boot/grub/grub.cfg
+# Edit the GRUB configuration file to set the timeout to 0 seconds
+grub-install --target=i386-pc /dev/sda ; sed -i 's/^GRUB_TIMEOUT=[0-9]*$/GRUB_TIMEOUT=0/' /etc/default/grub ; grub-mkconfig -o /boot/grub/grub.cfg
 
 # Edit /etc/sudoers file
 echo "tux ALL=(ALL) ALL" >> /etc/sudoers
