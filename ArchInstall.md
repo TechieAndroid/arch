@@ -289,3 +289,26 @@ Eyecandy:
     python-powerline: Python library for the Powerline utility
     powerline-vim: Powerline plugin for Vim
     python-dbus: Python library for D-Bus, a message bus system
+
+    $git clone https://aur.archlinux.org/yay.git: This command clones the yay repository from the AUR (Arch User Repository) to the local machine.
+    $cd yay && makepkg -si: This command enters the yay directory and creates a package for yay and installs it on the system.
+    $yay -S ly polybar: This command installs the ly display manager and polybar status bar using the yay package manager.
+    #systemctl enable ly: This command enables the ly display manager to start on boot.
+    #systemctl enable NetworkManager or #systemctl enable iwd: These commands enable either the NetworkManager or iwd (iNet wireless daemon) services to start on boot, which manage network connections.
+    #systemctl enable sshd: This command enables the sshd service to start on boot, allowing remote SSH access to the system.
+    #systemctl enable fstrim.timer: This command enables the fstrim timer service to start on boot, which regularly trims unused blocks on SSDs to maintain their performance.
+    #vim /etc/environment: This command opens the environment file in the vim text editor.
+    QT_QPA_PLATFORMTHEME=qt5ct: This sets the QT_QPA_PLATFORMTHEME environment variable to qt5ct, which is used to set the Qt5 theme.
+    #vim /etc/pacman.conf: This command opens the pacman configuration file in the vim text editor.
+    IloveCandy: This enables the progress bar in pacman when performing package installation or upgrades.
+    Color: This enables colored output in pacman.
+    #vim /etc/resolv.conf: This command opens the resolver configuration file in the vim text editor.
+    nameserver 1.1.1.1: This sets the DNS resolver to use the Cloudflare DNS server.
+    #vim /etc/iwd/main.conf: This command opens the iNet wireless daemon configuration file in the vim text editor.
+    [General] EnableNetworkConfiguration=true: This enables iwd's network configuration.
+    RoutePriorityOffset=300: This sets the priority of routes configured by iwd.
+    [Network] NameResolvingService=resolvconf: This sets the DNS resolver used by iwd to resolvconf.
+    $vim ~/.config/kdeglobals: This command opens the KDE global configuration file in the vim text editor.
+    [Colors:View] BackgroundNormal=R,G,B: This sets the background color of KDE applications to the RGB values specified.
+    Configs: These are the configuration files for various applications and services that are modified or created.
+    Logs: This is the Xorg log file which contains information about the Xorg server.
