@@ -262,3 +262,30 @@ Misc:
     firefox: web browser
     system-config-printer: printer configuration utility
     print-manager: printing management utility
+    kdenlive: video editor for KDE
+    k3b: CD/DVD burning application for KDE
+    kcalc: scientific calculator for KDE
+    krita: digital painting and illustration application for KDE
+    inkscape: vector graphics editor
+    gimp: image manipulation program
+    blender: 3D creation software
+    ffmpegthumbs: video thumbnail generator for KDE
+    youtube-dl: command-line program to download videos from YouTube.com and other video sites
+
+Eyecandy:
+
+    spectacle: screenshot and screen recording utility for KDE
+    qt5ct: Qt5 configuration tool
+    papirus-icon-theme: icon theme for Linux
+    breeze-icons: icon theme for KDE
+    oxygen-icons: icon theme for KDE
+    htop: interactive process viewer and system monitor
+    bashtop: terminal-based resource monitor and process viewer
+    lolcat: utility to output text in rainbow colors
+    neofetch: command-line system information tool
+    syntax-highlighting: syntax highlighting engine for the KDE framework
+    powerline: status line and prompt utility
+    powerline-fonts: fonts for the Powerline utility
+    python-powerline: Python library for the Powerline utility
+    powerline-vim: Powerline plugin for Vim
+    python-dbus: Python library for D-Bus, a message bus system
