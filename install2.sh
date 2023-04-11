@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# Set timezone to America/Chicago
-timedatectl set-timezone America/Chicago
-
-# Set NTP to true
-timedatectl set-ntp true
+ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
 # Set hardware clock to system time
 hwclock --systohc
@@ -19,7 +15,7 @@ locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Set hostname in /etc/hostname
-echo "hostname" > /etc/hostname
+echo "archvm" > /etc/hostname
 
 # Set hostname in /etc/hosts
 cat << EOF > /etc/hosts
