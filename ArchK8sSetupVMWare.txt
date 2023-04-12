@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Create k8smasternode VM
+vmrun -T ws createvm /path/to/vmware/folder/k8smasternode.vmx
+
+# Set VM configuration options
+vmrun -T ws modifyvm k8smasternode \
+    -memsize 2048 \
+    -firmware bios \
+    -hddformat "Thin" \
+    -guestos "archlinux-64" \
+    -numvcpus 2 \
+    -ide1 0 0 \
+    -ide1 1 1 \
+    -ide1 2 2 \
+    -ide1 3 3 \
+    -usb present \
+    -soundcard present \
+    -hdd "archlinux-2021.02.01-x86_64.iso"
+
+# Power on VM and follow base install of Arch Linux
+vmrun -T ws start /path/to/vmware/folder/k8smasternode.vmx
+
+# Set up disk without swap
+echo -e "o\nn\n\n\n\n+512M\nn\n\n\n\n\nw" | fdisk /dev/sda
+mkfs.ext4 /dev/sda1
+
+# Make sure fstab has no swap
+sed -i 's|/dev/sda2|#/dev/sda2|g' /etc/fstab
+
+# Install necessary packages
+pacman -Sy --noconfirm vim grub networkmanager htop neofetch
+
+# Enable NetworkManager on boot
+systemctl enable NetworkManager.service
+
+# Install GRUB i386-pc
+grub-install /dev/sda
+
+# Set GRUB timeout to 0
+sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
+
+# Configure GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Set hostname to k8smasternode
+echo "k8smasternode" > /etc/hostname
+
+# Write down IP address
+ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1 > /root/ip_address.txt
+
+# Clone and change the name of the clone to k8sworkernode1
+vmrun -T ws clone /path/to/vmware/folder/k8smasternode.vmx /path/to/vmware/folder/k8sworkernode1.vmx full -cloneName=k8sworkernode1
+
+# Start k8sworkernode1 VM and change its hostname to k8sworkernode1
+vmrun -T ws start /path/to/vmware/folder/k8sworkernode1.vmx
+echo "k8sworkernode1" > /etc/hostname
+
+# Write down IP address
+ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1 > /root/ip_address.txt
+
+# Install Docker, kubeadm, kubelet, kubectl on k8smasternode
+pacman -Sy --noconfirm docker kubeadm kubelet kubectl
+
+# Install Docker, kubeadm, kubelet on k8sworkernode1
+pacman -Sy --noconfirm docker kubeadm kubelet
